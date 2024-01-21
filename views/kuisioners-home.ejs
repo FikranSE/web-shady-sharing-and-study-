@@ -1,0 +1,29 @@
+<div class="wrapper-projects-home">
+  <% kuisioners.forEach(function(kuisioner) { %>
+  <div class="item">
+    <div class="top">
+      <div class="pic">
+        <% if (kuisioner.avatar) { %>
+          <img class="user" src="/img/<%= kuisioner.avatar %>">
+        <% } else { %>
+          <img src="./img/user.png"  >
+        <% } %>
+      </div>
+      <span class="time">
+        <%= moment(kuisioner.created_at).fromNow() %>
+      </span>
+    </div>
+    <div class="bottom">
+      <span class="name"><%= kuisioner.username %></span>
+      <span class="title"><%= kuisioner.title %></span>
+      <div class="excerpt"><%= kuisioner.excerpt %></div>
+      <div class="btn-item mt-4 d-flex gap-1">
+        <a href="/" class="view bg-light btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <span>View</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <% }); %>
+</div>
+

@@ -1,0 +1,20 @@
+
+
+<form action="/edit-matkul" class="form-post" method="post">
+  <h5>Edit Matkul</h5>
+  <div class="mb-3">
+    <input type="hidden" class="title" name="id_matkul" value="<%= datamatkulEdit.id_matkul %>">
+  </div>
+  <div class="mb-3">
+    <input type="text" class="title" name="matkul" value="<%= datamatkulEdit.matkul %>">
+  </div>
+  <div class="mt-3 con-btn">
+    <a href="/manages-matkul" class="btn-cancel">Cancel</a>
+    <button type="submit" class="btn-publish">Save</button>
+  </div>
+</form>
+
+
+
+
+

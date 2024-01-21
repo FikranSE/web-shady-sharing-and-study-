@@ -1,0 +1,26 @@
+<div class="wrapper-projects-home">
+  <% moduls.forEach(function(modul) { %>
+  <div class="item">
+    <div class="top">
+      <div class="pic">
+        <% if (modul.avatar) { %>
+          <img class="user" src="/img/<%= modul.avatar %>">
+        <% } else { %>
+          <img src="./img/user.png"  >
+        <% } %>
+      </div>
+      <span class="time">
+        <%= moment(modul.created_at).fromNow() %>
+      </span>
+    </div>
+    <div class="bottom">
+      <span class="name"><%= modul.username %></span>
+      <span class="title"><%= modul.title %></span>
+      <div class="excerpt"><%= modul.excerpt %></div>
+      <div class="btn-item mt-4 d-flex gap-1">
+        <a href="/download/<%= modul.id_user %>/<%= modul.id_post %>" class="button" style="vertical-align:middle"><span>Download</span></a>
+      </div>
+    </div>
+  </div>
+  <% }); %>
+</div>

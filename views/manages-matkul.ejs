@@ -1,0 +1,88 @@
+<style>
+  table thead tr th{
+    color:#4e5277;
+  }
+  .card-footer nav ul li a{
+    color:#4e5277;
+  }
+
+  .btn-submit-table{
+    background-color:#4e5277;
+    transition:.2s;
+  }
+  .btn-submit-table:hover{
+    background-color:#32354b;
+  }
+</style>
+<div class="card shadow mb-4 wrapper-table-content">
+  <div class="card-header py-3 d-flex">
+      <div>
+        <form action="/search-in-table-matkul" method="get">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label class="border-0 px-0" style="color:#4e5277;">Search: </label>
+            </div>
+            <div class="col-auto">
+              <input type="text" name="search" id="search" class="form-control" >
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-submit-table text-white">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="ms-1">
+        <a href="/tambah-matkul" class="btn btn-success">Tambahkan</a>
+      </div>
+  </div>
+  <div class="card-body">
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>Matkul</th>
+                      <th>Publish</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% items.forEach((item, index) => { %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= item.matkul %></td>
+                    <td><%= moment.utc(item.created_at).local().format("MMMM DD, YYYY") %></td>
+                    <td>
+                      <a href="/edit-matkul/<%= item.id_matkul %>" class="badge text-bg-info text-white">Edit</a>
+                      <a href="/delete-matkul/<%= item.id_matkul %>" onclick="return confirmDelete()" class="badge text-bg-danger">Delete</a>
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <div class="card-footer" >
+    <nav aria-label="Table Navigation">
+      <ul class="pagination justify-content-end">
+        <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
+          <a class="page-link" href="?page=<%= currentPage - 1 %>" tabindex="-1">Previous</a>
+        </li>
+        <% for(let i = 1; i <= totalPages; i++) { %>
+          <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+            <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+          </li>
+        <% } %>
+        <li class="page-item <%= currentPage === totalPages ? 'disabled' : '' %>">
+          <a class="page-link" href="?page=<%= currentPage + 1 %>">Next</a>
+        </li>
+      </ul>
+    </nav>
+</div>
+</div>
+
+<script>
+  function confirmDelete() {
+    return confirm("Yakin menghapus?");
+  }
+  </script>

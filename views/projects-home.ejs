@@ -1,0 +1,28 @@
+<div class="wrapper-projects-home">
+  <% projects.forEach(function(project) { %>
+  <div class="item">
+    <div class="top">
+      <div class="pic">
+        <% if (project.avatar) { %>
+          <img class="user" src="/img/<%= project.avatar %>">
+        <% } else { %>
+          <img src="./img/user.png"  >
+        <% } %>
+      </div>
+      <span class="time">
+        <%= moment(project.created_at).fromNow() %>
+      </span>
+    </div>
+    <div class="bottom">
+      <span class="name"><%= project.username %></span>
+      <span class="title"><%= project.title %></span>
+      <div class="excerpt"><%= project.excerpt %></div>
+      <div class="btn-item mt-4 d-flex gap-1">
+        <a href="/download/<%= project.id_user %>/<%= project.id_post %>" class="button" style="vertical-align:middle"><span>Download</span></a>
+      
+      <a href="/login" class="view bg-light" style="vertical-align:middle"><span>How to use</span></a>
+      </div>
+    </div>
+  </div>
+  <% }); %>
+</div>

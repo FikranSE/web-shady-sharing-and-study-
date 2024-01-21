@@ -1,0 +1,46 @@
+
+<nav>
+  <div class="left">
+    <form action="/search" method="get">
+      <div class="search">
+        <input name="query" placeholder="Search..." type="text">
+        <button type="submit">Go</button>
+      </div>        
+    </form>
+  </div>
+</nav>
+<div class="more-project-title">
+  <h4>Search for "<%= query %>"</h4>
+</div>
+  <% if (results.length === 0) { %>
+    <p style="text-align:center;">No results found.</p>
+  <% } else { %>
+    <div class="wrapper-projects-home">
+      <% results.forEach(function(project) { %>
+      <div class="item">
+        <div class="top">
+          <div class="pic">
+            <% if (project.avatar) { %>
+              <img class="user" src="/img/<%= project.avatar %>">
+            <% } else { %>
+              <img src="./img/user.png"  >
+            <% } %>
+          </div>
+          <span class="time">
+            <%= moment(project.created_at).fromNow() %>
+          </span>
+        </div>
+        <div class="bottom">
+          <span class="kategori"><%= project.categori %> - <%= project.matkul %></span>
+          <span class="name"><%= project.username %></span>
+          <a href="/detail/<%= project.id_post %>"  class="title text-decoration-none"><%= project.title %></a>
+          <div class="excerpt"><%= project.excerpt %></div>
+          <div class="btn-item mt-4 d-flex gap-1">
+            <a href="/download/<%= project.id_user %>/<%= project.id_post %>" class="button" style="vertical-align:middle"><span>Download</span></a>
+            <a href="/detail/<%= project.id_post %>"  class="view bg-light" style="vertical-align:middle"><span>View</span></a>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  <% } %>

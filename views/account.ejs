@@ -1,0 +1,92 @@
+
+<div class="wrapper-account">
+  <div class="container-account">
+    <div class="left">
+        <div class="pic">
+          <% if (user.avatar) { %>
+            <img src="./img/<%= user.avatar %>">
+          <% } else { %>
+            <img src="./img/user.png"  >
+          <% } %>
+        </div>
+    </div>
+    <div class="right">
+      <div class="top">
+        <span>
+          <% if(!user.username) { %>
+            <h5 class="username">Create Username</h5>
+            <% }else{ %>
+              <h5 class="username"><%= user.username %></h5>
+              <% } %>
+          <% if(!user.nim) { %>
+            <p>Create NIM</p>
+            <% }else{ %>
+              <p><%= user.nim %></p>
+              <% } %>
+        </span>
+        <a href="/edit-account"><i class="bi bi-pencil-square"></i></a>
+      </div>
+      <p class="about"><%= user.about %></p>
+    </div>
+</div>
+<div class="more-project-title">
+  <% if(user.username) {%>
+    <h4>More from <%= user.username %></h4>
+    <% }else{ %>
+      <h4>More from New User</h4>
+      <% } %>
+</div>
+<div class="wrapper-projects-home">
+  <% dataPost.forEach(function(project) { %>
+  <div class="item">
+    <div class="top">
+      <div class="pic">
+        <% if (project.avatar) { %>
+          <img class="user" src="/img/<%= project.avatar %>">
+        <% } else { %>
+          <img src="./img/user.png"  >
+        <% } %>
+      </div>
+      <span class="time">
+        <%= moment(project.created_at).fromNow() %>
+      </span>
+    </div>
+    <div class="bottom">
+      <span class="kategori"><%= project.categori %> - <%= project.matkul %></span>
+      <span class="name"><%= project.username %></span>
+      <a href="/detail-post-user/<%= project.id_post %>"  class="title text-decoration-none"><%= project.title %></a>
+      <div class="excerpt"><%= project.excerpt %></div>
+      <div class="btn-item mt-4 d-flex gap-1">
+        <a href="/download/<%= project.id_user %>/<%= project.id_post %>" class="button" style="vertical-align:middle"><span>Download</span></a>
+        <a href="/detail-post-user/<%= project.id_post %>"  class="view bg-light" style="vertical-align:middle"><span>View</span></a>
+      </div>
+    </div>
+  </div>
+  <% }); %>
+  <% dataKuis.forEach(function(kuisioner) { %>
+  <div class="item">
+    <div class="top">
+      <div class="pic">
+        <% if (kuisioner.avatar) { %>
+          <img class="user" src="/img/<%= kuisioner.avatar %>">
+        <% } else { %>
+          <img src="./img/user.png"  >
+        <% } %>
+      </div>
+      <span class="time">
+        <%= moment(kuisioner.created_at).fromNow() %>
+      </span>
+    </div>
+    <div class="bottom">
+      <span class="kategori kategori-3">Kuisioner - <%= kuisioner.matkul %></span>
+      <span class="name"><%= kuisioner.username %></span>
+      <a href="/detail-kuisioner-user/<%= kuisioner.id_kuisioner %>"  class="title text-decoration-none"><%= kuisioner.title %></a>
+      <div class="excerpt"><%= kuisioner.excerpt %></div>
+      <div class="btn-item mt-4 d-flex gap-1">
+        <a href="/detail-kuisioner-user/<%= kuisioner.id_kuisioner %>"  class="view bg-light" style="vertical-align:middle"><span>View</span></a>
+      </div>
+    </div>
+  </div>
+  <% }); %>
+</div>
+</div>

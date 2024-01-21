@@ -1,0 +1,14 @@
+<div class="wrapper-detail">
+  <div class="container-detail">
+    <div class="title">
+      <h4><%= detailKuisioner.title %></h4>
+      <span class="date">
+        <a href="" class="uploader"><%= detailKuisioner.username %></a>
+         on <%= moment(detailKuisioner.created_at).format('LL') %>
+     </span>
+    </div>
+    <div class="post-body">
+      <%- detailKuisioner.description %>
+    </div>
+  </div>
+</div>
